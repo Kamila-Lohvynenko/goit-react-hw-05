@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 24px;
+  list-style: none;
+}
+.item {
+  position: relative;
+  width: 210px;
+  height: 400px;
+
+  border: 1px solid rgb(179, 176, 176);
+  border-radius: 10px;
+}
+.name {
+  background-color: rgba(241, 242, 244, 0.968);
+}
+.img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}

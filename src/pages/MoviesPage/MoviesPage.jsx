@@ -17,6 +17,9 @@ const MoviesPage = () => {
 
   useEffect(() => {
     async function getMovies() {
+      if (query === '') {
+        return;
+      }
       try {
         setError(false);
         setIsLoading(true);

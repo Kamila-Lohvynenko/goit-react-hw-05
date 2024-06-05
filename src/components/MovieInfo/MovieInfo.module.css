@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+}
+.title {
+  font-weight: 700;
+}
+.img {
+  border-radius: 10px;
+}

@@ -16,6 +16,9 @@
   border-radius: 20px;
   background-color: rgb(250, 249, 249);
 }
+.card > .link {
+  color: black;
+}
 .card:hover {
   background-color: rgb(216, 215, 213);
   cursor: pointer;

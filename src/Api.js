@@ -24,3 +24,26 @@ export async function fetchMoviesBySearch(query, page) {
   );
   return response.data;
 }
+export async function fetchMovieById(id) {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}`,
+    options
+  );
+
+  return response.data;
+}
+export async function fetchMovieCredits(id) {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/credits`,
+    options
+  );
+  return response.data;
+}
+
+export async function fetchMovieReviews(id) {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${id}/reviews`,
+    options
+  );
+  return response.data;
+}
