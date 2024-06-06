@@ -1,7 +1,7 @@
 const LoadMoreButton = ({ onClick }) => {
   return (
     <button type="button" onClick={onClick}>
-      Load more
+      Next page
     </button>
   );
 };

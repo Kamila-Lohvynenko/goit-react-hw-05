@@ -1,0 +1,8 @@
+.link {
+  display: block;
+  padding: 10px;
+  margin-bottom: 24px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  background-color: rgb(250, 249, 249);
+}

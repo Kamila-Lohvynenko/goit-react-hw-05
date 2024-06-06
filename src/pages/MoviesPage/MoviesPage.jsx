@@ -6,29 +6,30 @@ import Loader from '../../components/Loader/Loader';
 import Error from './../../components/Error/Error';
 import MovieList from '../../components/MovieList/MovieList';
 import LoadMoreButton from '../../components/LoadMoreButton/LoadMoreButton';
+import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showLoadMore, setShowLoadMore] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [params] = useSearchParams();
 
+  const paramQuery = params.get('query') ?? '';
   useEffect(() => {
     async function getMovies() {
-      if (query === '') {
+      if (paramQuery === '') {
         return;
       }
       try {
         setError(false);
         setIsLoading(true);
-        const data = await fetchMoviesBySearch(query, page);
-        setMovies(prev => {
-          return [...prev, ...data.results];
-        });
+        const data = await fetchMoviesBySearch(paramQuery, page);
+        setMovies(data.results);
         setShowLoadMore(data.total_pages && data.total_pages !== page);
-        console.log(data);
+        setNotFound(data.results.length === 0);
       } catch {
         setError(true);
       } finally {
@@ -36,10 +37,9 @@ const MoviesPage = () => {
       }
     }
     getMovies();
-  }, [query, page]);
+  }, [paramQuery, page]);
 
-  const onSearch = query => {
-    setQuery(query);
+  const onSearch = () => {
     setPage(1);
     setMovies([]);
   };
@@ -55,6 +55,7 @@ const MoviesPage = () => {
       {movies.length > 0 && showLoadMore && !isLoading && (
         <LoadMoreButton onClick={handleLoadMore} />
       )}
+      {notFound && <p>Nothing is found with your request {paramQuery}</p>}
       <Toaster position="top-right" reverseOrder={false} />
     </div>
   );
